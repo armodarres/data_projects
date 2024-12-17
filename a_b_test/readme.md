@@ -8,6 +8,7 @@ This is a project that demonstrates how A/B testing using ML can be performed to
 
 - Product Sense: business goals, user funnels, metrics
 - Experimental Design
+
   
 ## Product Sense
 
@@ -73,7 +74,7 @@ A Driver Metric is a key metric that directly influences or drives the performan
 Guardrail Metrics are secondary metrics that help ensure the business does not negatively affect its growth or customer experience while focusing on its North Star Metric (NSM) and Driver Metrics. These metrics act as safeguards to keep the business on track and prevent unintended consequences as teams optimize for their primary goals. Think: statisfcation rate, churn rate, app deletion rate, un-sub rate, card default rate.
 <br>
 <br>
-The remainder two are less important but always consider checking your results by as many segments as possible to ensure you are not missing sub-population effects. As a last note on this section, remember that the data you have access to, the cadence it comes in at, and the baseline performance all can have an impact on what metrics can be viable as KPIs in the first place.
+The remainder two are less important but always consider checking your results by as many segments as possible to ensure you are not missing sub-population effects. As a last note on this section, remember that the data you have access to, the cadence it comes in at, and the baseline performance all can have an impact on what metrics can be viable as KPIs in the first place. **Remember to always consider the sources of potential variance that can get us to or away from our desired result, and youll always find your way to the appropriate metrics to measure.**
 
 ## Experimental
 
