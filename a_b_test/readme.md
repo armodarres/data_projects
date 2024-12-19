@@ -7,7 +7,7 @@ This is a project that demonstrates how A/B testing using ML can be performed to
 ## Contents
 
 - Product Sense: business goals, user funnels, metrics
-- Experimental Design
+- Hypothesis formation and experimental design
 
   
 ## Product Sense
@@ -65,11 +65,15 @@ With the above in mind, we can select the KPIs we want to keep track of during o
 <br>
 A North Star Metric (NSM) is a single, key metric that serves as the primary indicator of a company's long-term success and growth. It focuses on capturing the value your product delivers to customers, aligning teams around a common goal, and guiding decisions that drive growth. **Think what the guys on wall street would ultimately care about. Subscriptions, revenue, etc.** Provides value, contributes to profit, and gauges long term growth. 
 <br>
+<br>
 **2. Driver Metric**
+<br>
 <br>
 A Driver Metric is a key metric that directly influences or drives the performance of a North Star Metric (NSM). While a North Star Metric reflects the overall value or success of a business, driver metrics are the specific factors or actions that have a direct impact on achieving that success. Think what would lead to helping the north star: screen time, click through rate, average order value, push notification open rate, credit card sign ups, etc.
 <br>
+<br>
 **3. Guardrail Metrics**
+<br>
 <br>
 Guardrail Metrics are secondary metrics that help ensure the business does not negatively affect its growth or customer experience while focusing on its North Star Metric (NSM) and Driver Metrics. These metrics act as safeguards to keep the business on track and prevent unintended consequences as teams optimize for their primary goals. Think: statisfcation rate, churn rate, app deletion rate, un-sub rate, card default rate.
 <br>
@@ -80,7 +84,7 @@ The remainder two are less important but always consider checking your results b
 
 This is the world that most statisticians should feel comfortable in: hypothesis testing, power analysis, statistical tests, practical and significant differences. 
 
-### Fundemental rules of experiment design for A/B testing
+### Hypothesis formation
 1. Always state your feature launch criteria prior to testing (the necessary lift), along with your h0 rejection criteria, necessary power, etc.
 2. Remember that you don't always want to be testing for improvements, sometimes you just want to make sure nothing has changed!
 3. Alpha level (controlls type one error) meaning incorrectly rejecting a null hypothesis when it is true. They will always be arbitrary. Rejecting the null hypothesis means rejecting the notion that both sets of data came from the same underlying distribution.
@@ -92,5 +96,31 @@ Power has to do with the distribution of h0 outcomes vs ha outcomes and their ov
 Think of it this way: if I told you I surveyed 30,000 people from the general public and found that, contrary to sales figures, people tend to like Pepsi more than Coke, that would be very compelling. I found a result after studying 1% of a population (i.e. the US general public). It is likely to generalize to the larger population. If I surveyed 7 people and found the same thing, even if it was statistically significant, I wouldn't convince anyone. You can argue a lot of reasons for that (you can't get a representative sample, ANOVA/regression assumptions may not be met etc.), but what's important is that high power means highly persuasive (and you should be as critical or more of your results as those you are trying to convince). **You need both a signficiant result and a high power result to detect difference with conviction.**
 <br>
 <br>
-![Screenshot 2024-12-19 at 2 58 34 PM](https://github.com/user-attachments/assets/6ba35b96-3e4a-472a-bfb9-6ded237e3393)
 
+![Screenshot 2024-12-19 at 3 01 57 PM](https://github.com/user-attachments/assets/f217ca22-017d-4b63-987d-5a2d7b79e689)
+
+<br>
+5. MDE: Minimum detectable effect. Can be done using absolute difference, relative difference (% increase in mean), or cohens D (mean difference over pooled S.D). The choice of the MDE should be considered based on the amount of impact that can drive (1% at scale is worth a lot!)
+<br>
+<br>
+
+### Experimental Design
+The three big portions are sample formation (random or psuedo-random), sample size calculation for power, and experiment duration.
+
+1. Randomization: In an ideal world we can just set a seed and assign customerIds to one of two groups. However there are multiple shortcomings with this method:
+  - How can we assure that the underlying demopgrahics and characterstics between these groups are still random? **Solution: Do multivariate tests for differences between group A and B profiles MANOVA.**
+  - There may be practical issues like non-compliance or skewed allocation due to factors such as self-selection, non-random drops, or systematic behavior differences between groups. Loyalty programs or credit card sign-ups are a good example of where this issue may arise. **Solution: Propensity score matching.** is a statistical technique used to reduce selection bias and confounding in observational studies where randomization is not possible. The primary goal of PSM is to estimate the treatment effect (e.g., the effect of a treatment or intervention) by creating a matched sample that mimics a randomized controlled trial (RCT) as closely as possible.<br>
+  - Randomization works well when the treatment effect is expected to be homogeneous across the population, but it can mask significant effects in specific subgroups of users. **Solution: stratified randomization.**
+  - Attrition: Randomization does not guarantee that all participants will complete the study or remain in the experiment for its duration. **Solution: intent-to-treat analysis, multiple imputation, sensitivity analysis, or weighting, all after the conclusion of the study.**
+<br>
+<br>
+
+2. Sample size calculation and experiment duration.
+   - Effect Size: Make sure the effect size you want to detect is realistic. Too small an effect size might require an impractically large sample.
+   - Conversion Rate Variability: If you are dealing with proportions, make sure the baseline conversion rate is well estimated; large variability in the baseline can increase the required sample size.Power: While 80% power is common, in some situations, a higher power (e.g., 90%) may be preferred, but this will increase the required sample size.
+   - Multiple Tests: If you are running multiple A/B tests or multiple comparisons (e.g., multiple versions of B), you will need to adjust the significance level to account for multiple testing (e.g., using a Bonferroni correction).
+  
+<br>
+![Screenshot 2024-12-19 at 3 23 32 PM](https://github.com/user-attachments/assets/fd25d00e-4f05-46b7-8744-2c7cd00a45a1)
+<br>
+The delta here is the difference between the sample statistics. The variance here is pooled. 
