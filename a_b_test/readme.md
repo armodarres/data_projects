@@ -123,7 +123,8 @@ The three big portions are sample formation (random or psuedo-random), sample si
 <br>
 The delta here is the difference between the sample statistics. The variance here is pooled. 
 <br>
-![Screenshot 2024-12-19 at 3 23 32 PM](https://github.com/user-attachments/assets/fd25d00e-4f05-46b7-8744-2c7cd00a45a1)
+![image](https://github.com/user-attachments/assets/833363b3-2012-4b93-9b25-8ac7277e706e)
+
 <br>
 This formula can be used to understand the minimum duration for a simple version of A/B testing. Other consideration for time horizons should be things like seasonality, rare events or confounders, and time for maturity of the subject (think in terms of how long it might take to get the measurements you need in a loyalty program for rare events like pet visits).
 <br>
