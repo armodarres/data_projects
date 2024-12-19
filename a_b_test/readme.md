@@ -63,7 +63,7 @@ With the above in mind, we can select the KPIs we want to keep track of during o
 
 **1. North Star Metric**
 <br>
-A North Star Metric (NSM) is a single, key metric that serves as the primary indicator of a company's long-term success and growth. It focuses on capturing the value your product delivers to customers, aligning teams around a common goal, and guiding decisions that drive growth. **Think what the guys on wall street would ultimately care about. Subscriptions, revenue, etc. ** Provides value, contributes to profit, and gauges long term growth. 
+A North Star Metric (NSM) is a single, key metric that serves as the primary indicator of a company's long-term success and growth. It focuses on capturing the value your product delivers to customers, aligning teams around a common goal, and guiding decisions that drive growth. **Think what the guys on wall street would ultimately care about. Subscriptions, revenue, etc.** Provides value, contributes to profit, and gauges long term growth. 
 <br>
 **2. Driver Metric**
 <br>
@@ -78,5 +78,19 @@ The remainder two are less important but always consider checking your results b
 
 ## Experimental
 
-This is the world that most statisticians should feel comfortable in: hypothesis testing, power analysis, statistical tests, practical and significant differences. Always state your feature launch criteria a priori, along with your h0 rejection criteria, necessary power, etc.
+This is the world that most statisticians should feel comfortable in: hypothesis testing, power analysis, statistical tests, practical and significant differences. 
+
+### Fundemental rules of experiment design for A/B testing
+1. Always state your feature launch criteria prior to testing (the necessary lift), along with your h0 rejection criteria, necessary power, etc.
+2. Remember that you don't always want to be testing for improvements, sometimes you just want to make sure nothing has changed!
+3. Alpha level (controlls type one error) meaning incorrectly rejecting a null hypothesis when it is true. They will always be arbitrary. Rejecting the null hypothesis means rejecting the notion that both sets of data came from the same underlying distribution.
+4. Statistical power: the probability that we correctly reject the null hypothesis. This can be a very confusing concept so I will expand on it here:<br>
+<br>
+Power has to do with the distribution of h0 outcomes vs ha outcomes and their overlap. The more data we collect, the smaller the standard deviations become, the more power we have in our result. That way, the distributions of the two hypothesis will have very little overlap if in fact they are different. If the overlap is smaller, the lower the type 2 error (B), and the higher the power (1-B). If the above criteria is met, the area of the distribution under Ha which overlaps with the distribution of h0 will be smaller.
+<br>
+<br>
+Think of it this way: if I told you I surveyed 30,000 people from the general public and found that, contrary to sales figures, people tend to like Pepsi more than Coke, that would be very compelling. I found a result after studying 1% of a population (i.e. the US general public). It is likely to generalize to the larger population. If I surveyed 7 people and found the same thing, even if it was statistically significant, I wouldn't convince anyone. You can argue a lot of reasons for that (you can't get a representative sample, ANOVA/regression assumptions may not be met etc.), but what's important is that high power means highly persuasive (and you should be as critical or more of your results as those you are trying to convince). **You need both a signficiant result and a high power result to detect difference with conviction.**
+<br>
+<br>
+![Screenshot 2024-12-19 at 2 58 34 PM](https://github.com/user-attachments/assets/6ba35b96-3e4a-472a-bfb9-6ded237e3393)
 
