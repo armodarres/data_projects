@@ -121,6 +121,11 @@ The three big portions are sample formation (random or psuedo-random), sample si
    - Multiple Tests: If you are running multiple A/B tests or multiple comparisons (e.g., multiple versions of B), you will need to adjust the significance level to account for multiple testing (e.g., using a Bonferroni correction).
   
 <br>
+The delta here is the difference between the sample statistics. The variance here is pooled. 
+<br>
 ![Screenshot 2024-12-19 at 3 23 32 PM](https://github.com/user-attachments/assets/fd25d00e-4f05-46b7-8744-2c7cd00a45a1)
 <br>
-The delta here is the difference between the sample statistics. The variance here is pooled. 
+This formula can be used to understand the minimum duration for a simple version of A/B testing. Other consideration for time horizons should be things like seasonality, rare events or confounders, and time for maturity of the subject (think in terms of how long it might take to get the measurements you need in a loyalty program for rare events like pet visits).
+<br>
+
+![Screenshot 2024-12-19 at 3 45 49 PM](https://github.com/user-attachments/assets/5bad96b0-6324-4185-8506-e6c3102571ec)
