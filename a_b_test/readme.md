@@ -131,3 +131,8 @@ This formula can be used to understand the minimum duration for a simple version
 <br>
 
 ![Screenshot 2024-12-19 at 3 45 49 PM](https://github.com/user-attachments/assets/5bad96b0-6324-4185-8506-e6c3102571ec)
+
+<br>
+This kind of plot should always be used to determine what sample size is feasible to have the desired power and effective size for your study.
+<br>
+<img width="616" alt="Screenshot 2024-12-19 at 7 19 00 PM" src="https://github.com/user-attachments/assets/23de53e6-4328-4ca9-a945-6ce0e5e82084" />
