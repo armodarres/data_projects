@@ -123,6 +123,7 @@ The three big portions are sample formation (random or psuedo-random), sample si
 <br>
 The delta here is the difference between the sample statistics. The variance here is pooled. 
 <br>
+
 ![Screenshot 2024-12-19 at 7 07 42 PM](https://github.com/user-attachments/assets/4d9c6aa2-cdeb-4e5c-93fa-e14b3a9a02df)
 
 
