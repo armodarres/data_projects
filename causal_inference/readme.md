@@ -87,7 +87,7 @@ Key assumption: Conditional independence
 
 
 ---
-### **Regression Discontinuity Design **
+### **Regression Discontinuity Design**
 
 Key Idea: RDD estimates causal effects by exploiting a cutoff or threshold that determines treatment assignment. It compares units that are just above and just below the cutoff, assuming they are similar except for receiving the treatment.
 
