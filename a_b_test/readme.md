@@ -7,7 +7,8 @@ This is a project that demonstrates how A/B testing using ML can be performed to
 ## Contents
 
 - Product Sense: business goals, user funnels, metrics
-- Hypothesis formation and experimental design
+- Hypothesis formation, experimental design
+- Post analysis: Validity threats, inference
 
   
 ## Product Sense
@@ -87,7 +88,7 @@ This is the world that most statisticians should feel comfortable in: hypothesis
 ### Hypothesis formation
 1. Always state your feature launch criteria prior to testing (the necessary lift), along with your h0 rejection criteria, necessary power, etc.
 2. Remember that you don't always want to be testing for improvements, sometimes you just want to make sure nothing has changed!
-3. Alpha level (controlls type one error) meaning incorrectly rejecting a null hypothesis when it is true. They will always be arbitrary. Rejecting the null hypothesis means rejecting the notion that both sets of data came from the same underlying distribution.
+3. Alpha level (controlls type one error) meaning incorrectly rejecting a null hypothesis when it is true. They will not always be arbitrary: the alpha level here should be chosen considering how much risk there is in reject h0 and rolling out the new feature - a 95% chance that it improves by 10M but 5% chance it worsens by 20M may not be worth it! Rejecting the null hypothesis means rejecting the notion that both sets of data came from the same underlying distribution.
 4. Statistical power: the probability that we correctly reject the null hypothesis. This can be a very confusing concept so I will expand on it here:<br>
 <br>
 Power has to do with the distribution of h0 outcomes vs ha outcomes and their overlap. The more data we collect, the smaller the standard deviations become, the more power we have in our result. That way, the distributions of the two hypothesis will have very little overlap if in fact they are different. If the overlap is smaller, the lower the type 2 error (B), and the higher the power (1-B). If the above criteria is met, the area of the distribution under Ha which overlaps with the distribution of h0 will be smaller.
@@ -133,7 +134,33 @@ This formula can be used to understand the minimum duration for a simple version
 
 ![Screenshot 2024-12-19 at 3 45 49 PM](https://github.com/user-attachments/assets/5bad96b0-6324-4185-8506-e6c3102571ec)
 
+
 <br>
 This kind of plot should always be used to determine what sample size is feasible to have the desired power and effective size for your study.
 <br>
 <img width="616" alt="Screenshot 2024-12-19 at 7 19 00 PM" src="https://github.com/user-attachments/assets/23de53e6-4328-4ca9-a945-6ce0e5e82084" />
+
+<br>
+<br>
+## Post Analysis
+
+### Validity threats
+
+1. SUTVA: Stable unit treament value assumption
+- Typically violated if there network effects. Imagine two algos getting a/b tests on tiktok, but group A gets reccomended videos on their algo and sends to friend in group B. This drives up group Bs screentime. **Solution: Community based randomization, causal inference**. You can check and control for the effect by seeing if the treatment of one user affects their friends' outcomes.
+2. Survivorship bias: attrition/drop-out: use survival analysis, intention to treat.
+3. Sample ratio mis-match: Randomization did not go as expected. Use x2 test to check for significance of observed group size vs expected after the test.
+4. Primacy effect: Change eversion. **Solution: Segment users based on new vs returning, run experiment longer to see if time horizon shows more change**.
+5. Novelty effect: Opposite of primacy effect. Same solution.
+6. AA testing: Ensure that the control and treatment groups are starting in the same position before the AB test. This would only be looking at the baseline for the metric prior to the test.
+7. Hold out set: even after a decision has been made to launch, keep 10% of users without the new feature to ensure that the long term effect of the new feature is still doing what you expected it to do, and you haven't unintentional captured a spurious change.
+  
+![Screenshot 2024-12-19 at 7 44 48 PM](https://github.com/user-attachments/assets/0492ea6f-db06-44a1-a9a8-cd8cac900b38)
+
+<br>
+<br>
+
+### Inference
+
+There are a wide variety of tests that can be applied based on the situation, including: x2 test, z test for proportions, t test for means (students(pooled) and welch (unpooled/unequal)), and non-parametric methods like rank or sign tests (for smaller sample sizes). Remember that Non-parametric tests may be less powerful compared to parametric tests when the assumptions of the parametric test are met because they don't utilize all the information available in the data (such as means and variances).
+
