@@ -127,3 +127,67 @@ The interaction coefficient represents the marginal change in Y due to the treat
 If the parallel trends assumption is violated, we can use syntethic controls or bayesian structural time series.
 
 ### **Snythetic Controls**
+
+Motivations:
+
+1. We can not always have a psuedo-RCT setting. For instance, we may not be able to treat half of a city and not the other (a marketing campaign).
+2. On many platforms, one user’s action influence other users’ actions. For example, if I use certain products, then the people who are connected to me are more likely to use them. In the case of AB testing, if I am the one who is treated and some of my friends are not, then the effect is underestimated since both the purchase rate of the treatment group and that of the control group increase. This is coined the **spillover effect.**
+
+Snythetic Controls compare the treatment unit of interest against a weighted average of units unaffected by the treatent. The weights are assigned to units in the donor pool (the group of potential control units) in order to construct a synthetic control unit that closely resembles the treated unit in terms of pre-treatment characteristics. In essence, based on the eucledian distance of the underlying metrics in the control groups to the treatment, we can assign weights that creates a "frankenstein" version of the treatment group so we can determine the counterfactual without the treatment.
+
+![Screenshot 2024-12-21 at 10 07 09 AM](https://github.com/user-attachments/assets/14026a01-61a6-49e4-9f6f-6b24941f21f0)
+
+The weights are chosen to minimize the distance between the treated unit’s pre-treatment characteristics (or outcomes) and the weighted average of the donor units' pre-treatment characteristics. This is typically done using an optimization procedure, such as minimizing the mean squared error (MSE) or Euclidean distance between the treated unit and the synthetic control.
+
+![Screenshot 2024-12-21 at 10 04 07 AM](https://github.com/user-attachments/assets/05b16a72-9484-44ec-bfc4-9e8054210afe)
+
+We then assess the statistical significance of the post treatment unit to the synethetic control unit by using a permuation test. For every unit in the synthetic control, we subtract the synthetic control number, and get a distribution of average treatment effect. Alternatively, just a do a pre vs post t test on the treatment unit.
+
+![Screenshot 2024-12-21 at 10 14 28 AM](https://github.com/user-attachments/assets/ee17d926-a9de-41b8-bda2-fe06bbf2adbf)
+
+
+### **Bayesian Stuctural TS**
+
+Key points:
+
+1. BSTS estimates trend, seasonality, and regression compinents, each with its own bayesian priors. The projection from the BSTS is then used as the counterfactual to measure the treatment effect.
+2. BSTS is useful when the data is a time series, and there is no viable control group in the same time period as the treatment group. One benefit is there is no control group needed - and it is useful when the treatment affected everyone in the market. Question: How much did we gain from our superbowl ad?
+3. It is important to try and have a large amount of data to built the BSTS on to ensure you capture all the historic trends.
+4. We can calculate a posterior probability of a causal effect. The model will provide credible intervals for the treatment effect, which gives a range of plausible values.
+5. One last point: the bayesian approach here allows you to specify the parameters governing the trend, seasonality, and the intervention effects. By specifying intervention effect of 0, our posterior credible interval will be akin to h-test m=0 for treatment effect.
+
+   The CausalImpact R package provides an implementation of the approach.
+
+![Screenshot 2024-12-21 at 10 20 44 AM](https://github.com/user-attachments/assets/3499c652-bd37-43d7-8744-761e4bbdb84c)
+
+
+### **Meta Learners**
+
+Meta learners are usueful in instances where we believe there may be a heterogenous treatment effect. We are using ML methods to estimate the treatment effect and then get the CATE or Conditional ATE.
+
+1. Single learner: S
+- Uses a single tree based model to estimate the effect of the treatment by comparing predictions with and without it. We run a model where T is a feature (0 or 1)
+- We then can get predictions for each individual using both instances, one where the individual had treatment 0, and one where treatment was 1 (replicate an equal but opposite sample)
+- We now have the counterfactual when we run on the opposite sample. We can estimate local and global CATE by comparing the delta in Y for T=0 and T=1.
+- We can derive a 95% CI for cate using boostrapping. Remember that this CATE is global. We can plot it against your underlying features to see if the effect is heterogenous or not.
+
+  <br>
+  
+![Screenshot 2024-12-21 at 11 09 53 AM](https://github.com/user-attachments/assets/25c4ea67-7dba-461a-bbbe-884781e80a4f)
+![Screenshot 2024-12-21 at 11 12 55 AM](https://github.com/user-attachments/assets/8e3d29cb-dde8-4968-a6b8-bbf4392a021f)
+
+2. Two learner: T
+- Same idea as S learern, but instead we train two models, one on all the control and one on all the treatment. The treatment is no longer a feature - it will be latent.
+- We then run the treatment group through both M1(T0) to get the counterfactual and M2(T1) to get the OOS Prediction.
+- The difference between the two model outcomes is then consdiered the CATE.
+- The advantage of the single learner is that the latent treatment effect can have more variation across different sub groups because we are not specifying a feature for it.
+
+3. X learner - 2 stages
+- Useful when there is a significant imbalance between treatment and control groups.
+- We first make a propensity score of recieving treatment based on the features.
+- We then make a t learner sperately and get the Cate0 and Cate1 from the t learner.
+- We then get a final CATE which is the Propensity * Cate0 + 1- Propensity *Cate1
+  
+![Screenshot 2024-12-21 at 11 20 46 AM](https://github.com/user-attachments/assets/b79c3037-594a-4209-bed7-69f86ce93b0e)
+
+This learner first crosses over estimates from treatment to control and vice versa to produce counterfactuals or each, then uses it to estimate the final cate once accounting for the propensity of recieving treatment. These are very useful in the original PSM scenario where we want to compare individuals against themselves rather than do a control and treatment group. This weights ensure that the CATE is not biased to the majority class. It is more adapted to estimate the heterogenous treatment effect where the presence in members of the treatment is low.
