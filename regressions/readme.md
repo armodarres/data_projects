@@ -1,6 +1,4 @@
-I see! For GitHub Markdown, you can't use LaTeX-style math directly with just `\(\)` or `$$`. Instead, you should use inline math or display math using MathJax, or simply explain the formulas with plain text where needed. Here's a version that uses Markdown and readable equations with proper syntax for GitHub:
 
----
 
 # Comparison of Linear Regression, Lasso, Ridge, and Elastic Net
 
@@ -178,7 +176,3 @@ Elastic Net optimizes both penalties simultaneously. A common implementation use
 Understanding the differences between these methods is crucial for selecting the right one for your regression tasks. While **Linear Regression** is a good starting point, the regularization techniques of **Ridge**, **Lasso**, and **Elastic Net** can significantly improve model performance, especially when dealing with high-dimensional datasets or multicollinearity.
 
 For practical implementation, tuning of the regularization parameters (`λ1`, `λ2`) through **cross-validation** is often essential to ensure the best model performance.
-
----
-
-This version should now be properly formatted for GitHub. If you'd like to add more detail or modify anything, just let me know!
