@@ -53,9 +53,9 @@ Where:
 
 The regularization term \( \Omega(f) \) is typically:
 
-```latex
+$$
 \Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2
-```
+$$
 
 Where:
 - \( T \) is the number of leaves in the tree.
@@ -124,13 +124,13 @@ XGBoost leverages several advanced optimization strategies to achieve fast and e
 
 XGBoost uses a **second-order Taylor approximation** to estimate the optimal value of the loss function during optimization. This leads to faster convergence and more accurate gradient updates. Specifically, it approximates the loss function with a quadratic approximation to capture both **first-order gradients** and **second-order Hessians**:
 
-```latex
+$$
 \hat{g}_i = \frac{\partial \ell}{\partial f} \quad \text{(first-order gradient)}
-```
+$$
 
-```latex
+$$
 \hat{h}_i = \frac{\partial^2 \ell}{\partial f^2} \quad \text{(second-order Hessian)}
-```
+$$
 
 This allows the algorithm to more accurately estimate the direction of the gradient and adjust the learning rate dynamically.
 
@@ -157,9 +157,9 @@ XGBoost optimizes for both **memory usage** and **speed**, making it suitable fo
 
 Once the model is trained (after several iterations of adding trees), **final predictions** are made by summing the outputs of all the trees:
 
-```latex
+$$
 \hat{y} = \sum_{i=1}^T \text{Tree}_i(X)
-```
+$$
 
 Where:
 - \( \hat{y} \) is the final prediction for a given input \( X \).
