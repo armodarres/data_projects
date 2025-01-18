@@ -177,4 +177,6 @@ XGBoost is an extremely powerful and efficient implementation of gradient boosti
 
 ---
 
-This version should render all formulas correctly in GitHub's Markdown environment. Let me know if you'd like any adjustments!
+## Python Notebook
+
+This notebook shows how non linear tree based approaches can be used to handle the same wage prediction problem we saw using penalized regression.
