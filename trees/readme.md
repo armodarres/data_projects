@@ -47,9 +47,9 @@ The objective function in XGBoost can be written as:
 $$ L(\theta) = \sum_{i=1}^N \ell(y_i, \hat{y}_i) + \Omega(f) $$
 
 Where:
-- \ $$( \ell(y_i, \hat{y}_i) \)$$ is the **loss function**, where \$$( y_i \)$$ is the true label, and \( \hat{y}_i \) is the predicted label for sample \( i \).
-- \( \Omega(f) \) is the **regularization term** for the model, particularly the trees, to prevent overfitting.
-- \( N \) is the number of samples in the dataset.
+- $$\( \ell(y_i, \hat{y}_i) \)$$ is the **loss function**, where $$\( y_i \)$$ is the true label, and $$\( \hat{y}_i \)$$ is the predicted label for sample $$\( i \)$$.
+- $$\( \Omega(f) \)$$ is the **regularization term** for the model, particularly the trees, to prevent overfitting.
+- $$\( N \)$$ is the number of samples in the dataset.
 
 The regularization term \( \Omega(f) \) is typically:
 
@@ -58,9 +58,9 @@ $$
 $$
 
 Where:
-- \( T \) is the number of leaves in the tree.
-- \( \gamma \) is a parameter controlling the complexity of the tree (penalizing large trees).
-- \( \lambda \) is the L2 regularization parameter for the leaf weights \( w_j \).
+- $$\( T \)$$ is the number of leaves in the tree.
+- $$\( \gamma \)$$ is a parameter controlling the complexity of the tree (penalizing large trees).
+- $$\( \lambda \)$$ is the L2 regularization parameter for the leaf weights $$\( w_j \)$$.
 
 ---
 
@@ -110,9 +110,9 @@ The regularization term in the objective function is as follows:
 $$ \Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2 + \alpha \sum_{j=1}^T |w_j|
 
 Where:
-- \( \gamma \) penalizes large trees.
-- \( \lambda \) is the L2 regularization term for leaf weights.
-- \( \alpha \) is the L1 regularization term for leaf weights.
+- $$\( \gamma \)$$ penalizes large trees.
+- $$\( \lambda \)$$ is the L2 regularization term for leaf weights.
+- $$\( \alpha \)$$ is the L1 regularization term for leaf weights.
 
 ---
 
@@ -162,8 +162,8 @@ $$
 $$
 
 Where:
-- \( \hat{y} \) is the final prediction for a given input \( X \).
-- \( T \) is the total number of
+- $$\( \hat{y} \)$$ is the final prediction for a given input $$\( X \)$$
+- $$\( T \)$$ is the total number of
 
  trees in the model.
 
