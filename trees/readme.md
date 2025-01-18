@@ -47,7 +47,7 @@ The objective function in XGBoost can be written as:
 $$ L(\theta) = \sum_{i=1}^N \ell(y_i, \hat{y}_i) + \Omega(f) $$
 
 Where:
-- \( \ell(y_i, \hat{y}_i) \) is the **loss function**, where \( y_i \) is the true label, and \( \hat{y}_i \) is the predicted label for sample \( i \).
+- $$\( \ell(y_i, \hat{y}_i) \) is the **loss function**, where \( y_i \) is the true label, and \( \hat{y}_i \) is the predicted label for sample \( i \).$$
 - \( \Omega(f) \) is the **regularization term** for the model, particularly the trees, to prevent overfitting.
 - \( N \) is the number of samples in the dataset.
 
