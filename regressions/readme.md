@@ -176,3 +176,14 @@ Elastic Net optimizes both penalties simultaneously. A common implementation use
 Understanding the differences between these methods is crucial for selecting the right one for your regression tasks. While **Linear Regression** is a good starting point, the regularization techniques of **Ridge**, **Lasso**, and **Elastic Net** can significantly improve model performance, especially when dealing with high-dimensional datasets or multicollinearity.
 
 For practical implementation, tuning of the regularization parameters (`λ1`, `λ2`) through **cross-validation** is often essential to ensure the best model performance.
+
+---
+
+## Wage Study Implementation
+
+The notebooks attached are examples of these methods.
+
+One shows how these slection methods can work well in causal inference settings where interactions and exponential terms are used. It compares and contrasts estimates, errors, and stablilty of each method.
+The other aims to show how under different simulated scenarios, these models perform (dense vs sparse coefficients).
+
+
