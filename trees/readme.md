@@ -107,7 +107,7 @@ The regularization term in XGBoost combines **L1 (Lasso)** and **L2 (Ridge)** pe
 
 The regularization term in the objective function is as follows:
 
-$$ \Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2 + \alpha \sum_{j=1}^T |w_j|
+$$ \Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2 + \alpha \sum_{j=1}^T |w_j| $$
 
 Where:
 - $$\( \gamma \)$$ penalizes large trees.
