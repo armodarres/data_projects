@@ -167,9 +167,7 @@ Random Forest has several important hyperparameters that can significantly affec
    - **Impact**: This can prevent overfitting by ensuring that the tree does not fit very small segments of the data.
    - **Typical Values**: 1–10.
 
-5. **`max
-
-_features`**:  
+5. **`max_features`**:  
    - **Description**: The number of features to consider when looking for the best split.
    - **Impact**: Reducing this number increases the randomness of the forest and prevents overfitting, but too few features may decrease performance.
    - **Typical Values**: `"auto"`, `"sqrt"`, `"log2"` or an integer.
