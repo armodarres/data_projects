@@ -1,2 +1,2 @@
 # data_projects
-a repo of a variety of simulated data projects to showcase
+a repo of a variety of simulated data projects and overviews of ML concepts.
