@@ -79,7 +79,7 @@ The key idea is to iteratively build a regression tree where each node of the tr
 4. **Update** the model by adding the new tree’s predictions to the current predictions.
 5. Repeat this process until a stopping criterion is met (e.g., a fixed number of trees, or if adding another tree does not improve performance).
 
-The decision tree is built by finding the best **split** at each node based on minimizing the **loss** (typically a squared error loss for regression tasks) and regularizing the tree complexity using the regularization term \( \Omega(f) \).
+The decision tree is built by finding the best **split** at each node based on minimizing the **loss** (typically a squared error loss for regression tasks) and regularizing the tree complexity using the regularization term $$\( \Omega(f) \)$$.
 
 ---
 
