@@ -51,7 +51,7 @@ Where:
 - $$\( \Omega(f) \)$$ is the **regularization term** for the model, particularly the trees, to prevent overfitting.
 - $$\( N \)$$ is the number of samples in the dataset.
 
-The regularization term \( \Omega(f) \) is typically:
+The regularization term $$\( \Omega(f) \)$$ is typically:
 
 $$
 \Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2
